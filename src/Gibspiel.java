@@ -24,9 +24,9 @@ public class Gibspiel {
 
     public static void main(String[] args) {
         Spielbrett spielbrett = new Spielbrett();
-        MenschSpieler[] spieler = new MenschSpieler[2];
-        spieler[0] = new MenschSpieler(spielbrett, "1");
-        spieler[1] = new MenschSpieler(spielbrett, "2");
+        Spieler[] spieler = new Spieler[2];
+        spieler[0] = new MenschSpieler(spielbrett, "Mensch");
+        spieler[1] = new ComputerSpieler(spielbrett, "KI");
 
         int aktuellerSpieler = 0;
         while ( ! spielbrett.istSpielZuEnde() ) {

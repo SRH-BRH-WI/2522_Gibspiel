@@ -5,7 +5,11 @@ public class ComputerSpieler extends Spieler {
 
     @Override
     public int elementePlazieren() {
-        // TODO
-        return 0;
+        int spieleElemente = 100 - getSpielbrett().getAnzahlElemente();
+        if (spieleElemente > 10) {
+            spieleElemente = (int)(Math.random() * 10) + 1;
+        }
+        System.out.println(getName() + " spielt " + spieleElemente + " Elemente");
+        return spieleElemente;
     }
 }
