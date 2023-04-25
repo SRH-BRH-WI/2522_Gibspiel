@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Gibspiel {
 
     /*
@@ -22,14 +24,38 @@ public class Gibspiel {
      * - Spielbrett
      */
 
+    private static void spielerErmitteln(Spielbrett spielbrett, Spieler[] spieler) {
+        Scanner eingabe = new Scanner(System.in);
+        System.out.print("Wieviele Computerspieler (0-2): ");
+        int anzahlComputerSpieler = eingabe.nextInt();
+        if (anzahlComputerSpieler > 1)
+            spieler[0] = new ComputerSpieler(spielbrett, "KI-0");
+        else
+            spieler[0] = new MenschSpieler(spielbrett, "Mensch 1");
+        if (anzahlComputerSpieler > 0)
+            spieler[1] = new ComputerSpieler(spielbrett, "KI-1");
+        else
+            spieler[1] = new MenschSpieler(spielbrett, "Mensch 2");
+    }
+
+    private static int wähleAnfangsspieler(Spieler[] spieler) {
+        Scanner eingabe = new Scanner(System.in);
+        System.out.println("Es spielen " + spieler[0].getName() +" gegen " +
+                spieler[1].getName());
+        System.out.print("Wer soll anfangen (0-1): ");
+        int anfangsspieler = eingabe.nextInt();
+        return anfangsspieler;
+    }
+
     public static void main(String[] args) {
         Spielbrett spielbrett = new Spielbrett();
         Spieler[] spieler = new Spieler[2];
-        spieler[0] = new MenschSpieler(spielbrett, "Mensch");
-        spieler[1] = new ComputerSpieler(spielbrett, "KI");
+        spielerErmitteln(spielbrett, spieler);
 
-        int aktuellerSpieler = 0;
+        int aktuellerSpieler = wähleAnfangsspieler(spieler);
         while ( ! spielbrett.istSpielZuEnde() ) {
+            System.out.println("Es sind " + spielbrett.getAnzahlElemente() +
+                    " Elemente auf dem Spielbrett");
             int anzahlElemente = spieler[aktuellerSpieler].elementePlazieren();
             if ( spielbrett.elementeHinzufügen(anzahlElemente) ) {
                 if ( spielbrett.istSpielZuEnde() ) {

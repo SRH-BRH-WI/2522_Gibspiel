@@ -11,8 +11,6 @@ public class MenschSpieler extends Spieler {
     @Override
     public int elementePlazieren() {
         System.out.println("Spieler " + getName() + " ist am Zug.");
-        System.out.println("Es sind " + getSpielbrett().getAnzahlElemente() +
-                " Elemente auf dem Spielbrett");
         System.out.print("Wieviel Elemente plazieren: ");
         int anzahlElemente = eingabe.nextInt();
         return anzahlElemente;
