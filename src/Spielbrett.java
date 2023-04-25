@@ -10,8 +10,15 @@ public class Spielbrett {
     }
 
     public boolean elementeHinzufügen(int anzahlElemente) {
-        // TODO
-        return false;
+        // Sanity Check (Türsteher, Wächterfunktion)
+        if (anzahlElemente < 1) return false;
+        if (anzahlElemente > 10) return false;
+
+        int anzahlNeuerElemente = this.anzahlElemente + anzahlElemente;
+        if (anzahlNeuerElemente > 100) return false;
+
+        this.anzahlElemente = anzahlNeuerElemente;
+        return true;
     }
 
     public void spielAufbau() {
