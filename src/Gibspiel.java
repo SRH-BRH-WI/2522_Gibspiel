@@ -24,24 +24,30 @@ public class Gibspiel {
 
     public static void main(String[] args) {
         Spielbrett spielbrett = new Spielbrett();
-        MenschSpieler spieler1 = new MenschSpieler(spielbrett, "1");
-        MenschSpieler spieler2 = new MenschSpieler(spielbrett, "2");
+        MenschSpieler[] spieler = new MenschSpieler[2];
+        spieler[0] = new MenschSpieler(spielbrett, "1");
+        spieler[1] = new MenschSpieler(spielbrett, "2");
 
-        if (!spielbrett.istSpielZuEnde()) {
-            int anzahlElemente = spieler1.elementePlazieren();
-            if (spielbrett.elementeHinzufügen(anzahlElemente)) {
-                if (!spielbrett.istSpielZuEnde()) {
-                    anzahlElemente = spieler2.elementePlazieren();
-                    if (spielbrett.elementeHinzufügen(anzahlElemente)) {
-                        // Spieler 1 ist wieder dran ...
-                        System.out.println(spielbrett.getAnzahlElemente());
-                    } else
-                        System.out.println("Ungültiger Zug");
+        int aktuellerSpieler = 0;
+        while ( ! spielbrett.istSpielZuEnde() ) {
+            int anzahlElemente = spieler[aktuellerSpieler].elementePlazieren();
+            if ( spielbrett.elementeHinzufügen(anzahlElemente) ) {
+                if ( spielbrett.istSpielZuEnde() ) {
+                    System.out.println("Spieler " +
+                            spieler[aktuellerSpieler].getName() + " hat gewonnen");
+                    break;
                 }
-                else
-                    System.out.println("Spieler 1 hat gewonnen");
-            } else
-                System.out.println("Ungültiger Zug");
+                // Spieler wechseln (Version 1)
+                if (aktuellerSpieler == 0)      aktuellerSpieler = 1;
+                else if (aktuellerSpieler == 1) aktuellerSpieler = 0;
+                // Spieler wechseln (Version 2)
+//                aktuellerSpieler = (aktuellerSpieler + 1) % 2;
+                // Spieler wechseln (Version 3)
+//                aktuellerSpieler = 1 - aktuellerSpieler;
+            }
+            else
+                System.out.println("Ungültiger Zug, bitte nochmal versuchen");
         }
+        System.out.println("Vielen Dank fürs Spielen");
     }
 }
