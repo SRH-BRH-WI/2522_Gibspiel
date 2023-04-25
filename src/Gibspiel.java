@@ -27,18 +27,21 @@ public class Gibspiel {
         MenschSpieler spieler1 = new MenschSpieler(spielbrett, "1");
         MenschSpieler spieler2 = new MenschSpieler(spielbrett, "2");
 
-        int anzahlElemente = spieler1.elementePlazieren();
-        if ( spielbrett.elementeHinzufügen(anzahlElemente) ) {
-            anzahlElemente = spieler2.elementePlazieren();
-            if ( spielbrett.elementeHinzufügen(anzahlElemente) ) {
-                // Spieler 1 ist wieder dran ...
-                System.out.println(spielbrett.getAnzahlElemente());
-            }
-            else
+        if (!spielbrett.istSpielZuEnde()) {
+            int anzahlElemente = spieler1.elementePlazieren();
+            if (spielbrett.elementeHinzufügen(anzahlElemente)) {
+                if (!spielbrett.istSpielZuEnde()) {
+                    anzahlElemente = spieler2.elementePlazieren();
+                    if (spielbrett.elementeHinzufügen(anzahlElemente)) {
+                        // Spieler 1 ist wieder dran ...
+                        System.out.println(spielbrett.getAnzahlElemente());
+                    } else
+                        System.out.println("Ungültiger Zug");
+                }
+                else
+                    System.out.println("Spieler 1 hat gewonnen");
+            } else
                 System.out.println("Ungültiger Zug");
         }
-        else
-            System.out.println("Ungültiger Zug");
     }
-
 }

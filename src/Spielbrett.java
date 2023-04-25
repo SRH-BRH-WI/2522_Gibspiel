@@ -26,7 +26,6 @@ public class Spielbrett {
     }
 
     public boolean istSpielZuEnde() {
-        // TODO
-        return false;
+        return (this.anzahlElemente == 100);
     }
 }
