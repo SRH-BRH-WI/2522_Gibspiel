@@ -23,7 +23,18 @@ public class Gibspiel {
      */
 
     public static void main(String[] args) {
+        Spielbrett spielbrett = new Spielbrett();
+        MenschSpieler spieler1 = new MenschSpieler(spielbrett, "Spieler 1");
+        MenschSpieler spieler2 = new MenschSpieler(spielbrett, "Spieler 2");
 
+        int anzahlElemente = spieler1.elementePlazieren();
+        if ( spielbrett.elementeHinzufügen(anzahlElemente) ) {
+            anzahlElemente = spieler2.elementePlazieren();
+            if ( spielbrett.elementeHinzufügen(anzahlElemente) ) {
+                // Spieler 1 ist wieder dran ...
+                System.out.println("Okay");
+            }
+        }
     }
 
 }

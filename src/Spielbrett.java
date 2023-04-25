@@ -1,8 +1,8 @@
 public class Spielbrett {
     private int anzahlElemente;
 
-    public Spielbrett(int anzahlElemente) {
-        this.anzahlElemente = anzahlElemente;
+    public Spielbrett() {
+        spielAufbau();
     }
 
     public int getAnzahlElemente() {
@@ -15,7 +15,7 @@ public class Spielbrett {
     }
 
     public void spielAufbau() {
-        // TODO
+        this.anzahlElemente = (int)(Math.random() * 30);
     }
 
     public boolean istSpielZuEnde() {
